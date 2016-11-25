@@ -1,0 +1,43 @@
+@import '~theme/variables'
+
+.tmux-bar
+  display flex
+  flex 1 100%
+
+  color #333
+  height 1.3em
+  line-height 1.3em
+  background-color #444
+
+  .left, .middle, .right
+    display flex
+
+  .left, .right
+    width 50%
+
+  .right
+    justify-content flex-end
+
+  .title
+    width auto
+    background-color #AFD787
+    padding 0 $spacing
+
+  .arrow-right
+    width 0
+    height 0
+    border-top: (1.3em / 2) solid #3A3A3A;
+    border-bottom: (1.3em / 2) solid #3A3A3A;
+    border-left: (1.3em / 2) solid #AFD787;
+
+  .arrow-right-invert
+    width 0
+    height 0
+    border-top: (1.3em / 2) solid transparent;
+    border-bottom: (1.3em / 2) solid transparent;
+    border-left: (1.3em / 2) solid #3A3A3A;
+
+  .page
+    background-color #3A3A3A
+    padding 0 $spacing
+    color #b1b1b1

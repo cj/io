@@ -14,7 +14,18 @@ const includes   = [ path.resolve('./src') ]
 const loaders    = {
   img: { test: /\.(jpg|png)$/, include: includes, loader: 'file-loader?name=assets/images/[name].[ext]' },
   js:  { test: /\.js$/,        include: includes, loader: 'babel-loader' },
-  vue: { test: /\.vue$/,       include: includes, loader: 'vue-loader' },
+  vue: {
+    test: /\.vue$/,
+    include: includes,
+    loader: 'vue-loader',
+    options: {
+      postcss: [
+        require('autoprefixer')({
+          browsers: ['last 3 versions']
+        })
+      ]
+    }
+  },
   fonts: [
     { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,      loader: 'url-loader?limit=10000&mimetype=application/font-woff&name=fonts/[name].[ext]' },
     { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, loader: 'file-loader?name=fonts/[name].[ext]' }
@@ -32,15 +43,6 @@ config.resolve = {
 
 // plugins
 config.plugins = [
-  new LoaderOptionsPlugin({
-    vue: {
-      postcss: [
-        require('autoprefixer')({
-          browsers: ['last 3 versions']
-        })
-      ]
-    }
-  }),
   new DefinePlugin({
     'process.env.NODE_ENV': JSON.stringify(NODE_ENV)
   }),
