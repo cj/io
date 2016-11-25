@@ -1,0 +1,24 @@
+@import '~normalize.css'
+
+@import 'theme/variables'
+@import 'theme/mixins'
+
+@font-face
+  font-family: 'PragmataPro Mono'
+  src: url("~assets/fonts/PragmataProMono.eot")
+  src: url("~assets/fonts/PragmataProMono.eot?#iefix") format("embedded-opentype"), url("~assets/fonts/PragmataProMono.woff2") format("woff2"), url("~assets/fonts/PragmataProMono.woff") format("woff"), url("~assets/fonts/PragmataProMono.ttf") format("truetype")
+  font-weight: normal
+  font-style: normal
+
+for header, i in $headers
+  header-scaler = $headers-scaler[i]
+  {header}
+    font-size: $font-size * header-scaler
+
+:root
+  font-size: $font-size;
+  font-family: 'PragmataPro Mono', sans-serif;
+  -webkit-font-smoothing: antialiased;
+  line-height: $font-size * $spacing
+  background-color #2b303b
+  color #839496

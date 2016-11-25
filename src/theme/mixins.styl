@@ -1,0 +1,4 @@
+browser(browsers = Mozilla)
+  for browser in browsers
+    html[data-browser*={browser}] &
+      {block}
