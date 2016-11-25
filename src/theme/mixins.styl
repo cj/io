@@ -2,3 +2,20 @@ browser(browsers = Mozilla)
   for browser in browsers
     html[data-browser*={browser}] &
       {block}
+
+arrow(direction = right)
+  content ''
+  display inline-block
+  margin-bottom 0.05em
+  -webkit-transform:rotate(360deg)
+  width 0;
+  height 0;
+  border-style solid;
+
+  if direction == right
+    border-width 0.25em 0 0.25em 0.25em;
+    border-color transparent transparent transparent #dad085
+
+  if direction == down
+    border-width 0.25em 0.25em 0 0.25em;
+    border-color #dad085 transparent transparent transparent

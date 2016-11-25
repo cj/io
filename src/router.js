@@ -6,6 +6,7 @@ import HomeView from 'views/Home.vue'
 Vue.use(Router)
 
 export default new Router({
+  mode: 'history',
   scrollBehavior: () => ({ y: 0 }),
   routes: [
     { path: '/', component: HomeView }
