@@ -3,19 +3,17 @@ browser(browsers = Mozilla)
     html[data-browser*={browser}] &
       {block}
 
-arrow(direction = right)
+arrow(direction = right, size = 0.25em, foreground-color = #dad085, background-color = transparent)
   content ''
   display inline-block
-  margin-bottom 0.05em
-  -webkit-transform:rotate(360deg)
-  width 0;
-  height 0;
+  width 0
+  height auto
   border-style solid;
 
   if direction == right
-    border-width 0.25em 0 0.25em 0.25em;
-    border-color transparent transparent transparent #dad085
+    border-width size 0 size size
+    border-color background-color background-color background-color foreground-color
 
   if direction == down
-    border-width 0.25em 0.25em 0 0.25em;
-    border-color #dad085 transparent transparent transparent
+    border-width size size 0 size
+    border-color foreground-color background-color background-color background-color

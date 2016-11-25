@@ -1,12 +1,15 @@
 @import '~theme/variables'
+@import '~theme/mixins'
+
+height = 1.3em
 
 .tmux-bar
   display flex
   flex 1 100%
 
   color #333
-  height 1.3em
-  line-height 1.3em
+  height height
+  line-height height
   background-color #444
 
   .left, .middle, .right
@@ -19,25 +22,19 @@
     justify-content flex-end
 
   .title
+    display flex
     width auto
     background-color #AFD787
-    padding 0 $spacing
-
-  .arrow-right
-    width 0
-    height 0
-    border-top: (1.3em / 2) solid #3A3A3A;
-    border-bottom: (1.3em / 2) solid #3A3A3A;
-    border-left: (1.3em / 2) solid #AFD787;
-
-  .arrow-right-invert
-    width 0
-    height 0
-    border-top: (1.3em / 2) solid transparent;
-    border-bottom: (1.3em / 2) solid transparent;
-    border-left: (1.3em / 2) solid #3A3A3A;
+    padding-left $spacing
+    &::after
+      arrow(right, (height / 2), #AFD787, #3A3A3A)
+      margin-left $spacing
 
   .page
+    display flex
     background-color #3A3A3A
-    padding 0 $spacing
+    padding-left $spacing
     color #b1b1b1
+    &::after
+      arrow(right, (height / 2), #3A3A3A, #444)
+      margin-left $spacing
