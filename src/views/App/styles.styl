@@ -10,5 +10,33 @@
   flex-flow row wrap
 
   > .content
-    padding $spacing
+    display flex
+    // padding $spacing
     height 100%
+    width (100% - 15em) + $spacing
+
+    #app__gutter
+      height 100%
+      width 3em
+      text-align right
+
+      pre {
+        line-height: 0;
+        counter-reset: line;
+        margin $spacing 0 0 0
+        padding 0
+
+        span {
+          display: block;
+          line-height $font-size + ($spacing / 2)
+
+          &:before {
+            counter-increment: line;
+            content: counter(line);
+            display: inline-block;
+            padding: 0 .5em;
+            margin-right: .5em;
+            color #4E4E4E
+          }
+        }
+      }

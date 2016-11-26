@@ -5,8 +5,8 @@ import HotModuleReplacementPlugin from 'webpack/lib/HotModuleReplacementPlugin'
 import ProgressPlugin             from 'webpack/lib/ProgressPlugin'
 import NamedModulesPlugin         from 'webpack/lib/NamedModulesPlugin'
 import WebpackMd5Hash             from 'webpack-md5-hash'
-import DedupePlugin               from 'webpack/lib/optimize/DedupePlugin'
 import UglifyJsPlugin             from 'webpack/lib/optimize/UglifyJsPlugin'
+import FaviconsWebpackPlugin      from 'favicons-webpack-plugin'
 
 const config   = module.exports = {}
 const NODE_ENV = process.env.NODE_ENV || 'development'
@@ -104,8 +104,10 @@ if (NODE_ENV === 'production') {
   config.output.filename = '[name].[chunkhash].js'
 
   config.plugins.push(
+    new FaviconsWebpackPlugin('./src/assets/logo.png', {
+      inject: true
+    }),
     new WebpackMd5Hash(),
-    new DedupePlugin(),
     new UglifyJsPlugin({
       mangle: true,
       compress: {
