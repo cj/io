@@ -15,5 +15,9 @@ arrow(direction = right, size = 0.25em, foreground-color = #dad085, background-c
     border-color background-color background-color background-color foreground-color
 
   if direction == down
-    border-width size size 0 size
+    border-width size size size 0
     border-color foreground-color background-color background-color background-color
+
+  if direction == left
+    border-width size size size 0
+    border-color background-color foreground-color background-color background-color

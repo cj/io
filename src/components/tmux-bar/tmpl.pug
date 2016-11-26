@@ -2,4 +2,13 @@
   .left
     .title cj.io
     .page Home
-  .right Clock
+  .right
+    .day {{ dayWord }}
+    .date
+      .month {{ month }}
+      .day {{ day }}
+      .year {{ year }}
+      .time {{ time }}
+    .browser
+      .name {{ browser.name }}
+      .version {{ browser.version }}

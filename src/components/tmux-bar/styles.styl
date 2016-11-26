@@ -21,6 +21,52 @@ height = 1.3em
   .right
     justify-content flex-end
 
+    > .day
+      color #AFD787
+      margin-right $spacing
+
+    .date
+      &:before
+        arrow(left, (height / 2), #3A3A3A, #444)
+      .month, .day
+        margin-right $spacing
+      .year
+        margin-right ($spacing * 1.5)
+      .month
+        margin-left $spacing
+      .day
+        &:after
+          content ','
+      color #b1b1b1
+      display flex
+      padding-right ($spacing * 1.5)
+      background-color #3A3A3A
+      .time
+        padding-left ($spacing * 2.5)
+        position relative
+        &:before
+          height $line-height
+          position absolute
+          left 0.05em
+          bottom 0.05em
+          z-index 2
+          arrow(left, (height / 2.15), #3A3A3A)
+        &:after
+          arrow(left, (height / 2), #b1b1b1, #3A3A3A)
+          z-index 1
+          left 0px
+          bottom 0px
+          position absolute
+
+    .browser
+      display flex
+      background-color #AFD787
+      &:before
+        arrow(left, (height / 2), #AFD787, #3A3A3A)
+
+      .name, .version
+        margin-right $spacing
+
   .title
     display flex
     width auto

@@ -1,5 +1,4 @@
 import path                       from 'path'
-import LoaderOptionsPlugin        from 'webpack/lib/LoaderOptionsPlugin'
 import DefinePlugin               from 'webpack/lib/DefinePlugin'
 import HtmlWebpackPlugin          from 'html-webpack-plugin'
 import HotModuleReplacementPlugin from 'webpack/lib/HotModuleReplacementPlugin'
@@ -14,6 +13,7 @@ const includes   = [ path.resolve('./src') ]
 const loaders    = {
   img: { test: /\.(jpg|png)$/, include: includes, loader: 'file-loader?name=assets/images/[name].[ext]' },
   js:  { test: /\.js$/,        include: includes, loader: 'babel-loader' },
+  json:  { test: /\.json$/,    include: includes, loader: 'json-loader' },
   vue: {
     test: /\.vue$/,
     include: includes,
