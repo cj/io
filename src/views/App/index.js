@@ -1,5 +1,6 @@
-import tmuxBar from 'components/tmux-bar.vue'
+import tmuxBar    from 'components/tmux-bar.vue'
 import navigation from 'components/navigation.vue'
+import debounce   from 'lodash/debounce'
 
 export default {
   name: 'app',
@@ -7,13 +8,24 @@ export default {
     tmuxBar,
     navigation
   },
-  mounted() {
-    const gutter = document.getElementById('app__gutter')
-    const height = gutter.clientHeight
-    const pre    = gutter.getElementsByTagName('pre')[0]
+  methods: {
+    updateGutter() {
+      const gutter    = document.getElementById('app__gutter')
+      const height    = parseInt(gutter.clientHeight / 13)
+      const pre       = gutter.getElementsByTagName('pre')[0]
 
-    for (var i of Array(height).keys()) {
-      pre.appendChild(document.createElement('span'))
+      console.log('updateGutter')
+
+      Array(height).fill().forEach(() => {
+        pre.appendChild(document.createElement('span'))
+      })
     }
+  },
+  mounted() {
+    this.updateGutter()
+    window.addEventListener('resize', debounce(this.updateGutter, 250))
+  },
+  beforeDestroy() {
+    window.removeEventListener('resize', this.updateGutter)
   }
 }
