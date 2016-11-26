@@ -1,11 +1,11 @@
-import browser from 'browser'
 import Moment from 'moment'
+import platform from 'platform'
 
 export default {
   name: 'tmux-bar',
   data() {
     return {
-      browser,
+      platform,
       moment: new Moment(),
       timer: null
     }

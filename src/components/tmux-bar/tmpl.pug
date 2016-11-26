@@ -10,5 +10,4 @@
       .year {{ year }}
       .time {{ time }}
     .browser
-      .name {{ browser.name }}
-      .version {{ browser.version }}
+      .name {{ platform.product || platform.name }}
