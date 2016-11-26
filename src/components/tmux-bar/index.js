@@ -3,14 +3,26 @@ import Moment from 'moment'
 
 export default {
   name: 'tmux-bar',
-  data () {
+  data() {
     return {
       browser,
-      time: Moment().format('HH:mm'),
-      month: Moment().format('MMM'),
-      day: Moment().format('do'),
-      year: Moment().format('YYYY'),
-      dayWord: Moment().format('ddd')
+      moment: new Moment(),
+      timer: null
     }
+  },
+  computed: {
+    time()    { return this.moment.format('HH:mm') },
+    month()   { return this.moment.format('MMM') },
+    day()     { return this.moment.format('do') },
+    year()    { return this.moment.format('YYYY') },
+    dayWord() { return this.moment.format('ddd') }
+  },
+  created() {
+    this.timer = setInterval(() => {
+      this.moment = new Moment()
+    }, 1000)
+  },
+  beforeDestroy() {
+    clearInterval(this.timer)
   }
 }

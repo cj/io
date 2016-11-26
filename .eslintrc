@@ -16,6 +16,7 @@
   },
   "rules": {
     "no-multi-spaces": 0,
-    "key-spacing": 0
+    "key-spacing": 0,
+    "space-before-function-paren": 0
   }
 }
