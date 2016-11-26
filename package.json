@@ -5,6 +5,12 @@
   "repository": "github.com/cj/io",
   "author": "cj <cjlazell@gmail.com>",
   "license": "MIT",
+  "scripts": {
+    "clean": "rm -rf ./dist",
+    "deploy": "run-s clean webpack:prod firebase:deploy",
+    "webpack": "NODE_ENV=production webpack",
+    "firebase:deploy": "firebase deploy"
+  },
   "devDependencies": {
     "babel-core": "^6.18.2",
     "babel-eslint": "^7.1.1",
@@ -31,6 +37,10 @@
     "vue-router": "^2.0.3",
     "vue-template-loader": "^0.1.2",
     "webpack": "2.1.0-beta.27",
-    "webpack-dev-server": "2.1.0-beta.11"
+    "webpack-dev-server": "2.1.0-beta.11",
+    "webpack-md5-hash": "^0.0.5"
+  },
+  "dependencies": {
+    "npm-run-all": "^3.1.1"
   }
 }

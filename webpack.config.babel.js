@@ -4,13 +4,16 @@ import HtmlWebpackPlugin          from 'html-webpack-plugin'
 import HotModuleReplacementPlugin from 'webpack/lib/HotModuleReplacementPlugin'
 import ProgressPlugin             from 'webpack/lib/ProgressPlugin'
 import NamedModulesPlugin         from 'webpack/lib/NamedModulesPlugin'
+import WebpackMd5Hash             from 'webpack-md5-hash'
+import DedupePlugin               from 'webpack/lib/optimize/DedupePlugin'
+import UglifyJsPlugin             from 'webpack/lib/optimize/UglifyJsPlugin'
 
 const config   = module.exports = {}
 const NODE_ENV = process.env.NODE_ENV || 'development'
 const HOST     = process.env.WEBPACK_HOST || '0.0.0.0'
 const PORT     = process.env.WEBPACK_PORT || 3000
-const includes   = [ path.resolve('./src') ]
-const loaders    = {
+const includes = [ path.resolve('./src') ]
+const loaders  = {
   img: { test: /\.(jpg|png)$/, include: includes, loader: 'file-loader?name=assets/images/[name].[ext]' },
   js:  { test: /\.js$/,        include: includes, loader: 'babel-loader' },
   json:  { test: /\.json$/,    include: includes, loader: 'json-loader' },
@@ -59,19 +62,19 @@ config.entry = {
   'index': './src/entries/browser.js'
 }
 
+config.devtool = 'source-map'
+
+config.module = {
+  rules: [ loaders.js, loaders.vue, loaders.img, ...loaders.fonts ]
+}
+
+config.output = {
+  path: path.resolve('dist'),
+  filename: '[name].js'
+}
+
 // development
 if (NODE_ENV === 'development') {
-  config.output = {
-    path: path.resolve('dist'),
-    filename: '[name].js'
-  }
-
-  config.devtool = 'source-map'
-
-  config.module = {
-    rules: [ loaders.js, loaders.vue, loaders.img, ...loaders.fonts ]
-  }
-
   config.plugins.push(
     new HotModuleReplacementPlugin(), new NamedModulesPlugin(),
     new ProgressPlugin()
@@ -95,4 +98,22 @@ if (NODE_ENV === 'development') {
       version: false
     }
   }
+}
+
+if (NODE_ENV === 'production') {
+  config.output.filename = '[name].[chunkhash].js'
+
+  config.plugins.push(
+    new WebpackMd5Hash(),
+    new DedupePlugin(),
+    new UglifyJsPlugin({
+      mangle: true,
+      compress: {
+        dead_code: true, // eslint-disable-line camelcase
+        screw_ie8: true, // eslint-disable-line camelcase
+        unused: true,
+        warnings: false
+      }
+    })
+  )
 }
